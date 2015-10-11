@@ -77,6 +77,36 @@ public class Proxy
 		}
 	}
 	
+	private String cacheRead(){
+		return cacheRequest.read();
+	}
+	
+	private boolean isAlreadyCached(String url){
+		boolean hit = cacheToFile.isCached(url);
+		if (hit)
+		{
+			cacheLog.logHit(url);
+		}
+		else
+		{
+			cacheLog.logMiss(url);
+		}
+		return hit;
+	}
+	
+	private boolean checkIfRemoved(String url, boolean hit){
+		String removedURL=cacheList.addNewObject(url, hit);
+		if (removedURL.trim().length()>0)
+		{
+			//webCache.removeCache(removedURL);
+			// physically removed the cached file
+			cacheToFile.remove(removedURL);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public void run()
 	{
 		// A normal proxy will remain running
@@ -89,33 +119,19 @@ public class Proxy
 		do
 		{
 			// Step 1: read request from file.
-			url=cacheRequest.read();
+			url = cacheRead();
 			
 			// If we have one, proceed.
 			if (url.trim().length()>0)
 			{
 				// Step 2: Check to see if URL is cached
 				//         Log this in the cache log.
-				boolean hit=cacheToFile.isCached(url);
-				if (hit)
-				{
-					cacheLog.logHit(url);
-				}
-				else
-				{
-					cacheLog.logMiss(url);
-				}
+				boolean wasAHit = isAlreadyCached(url);
 
 				// Step 3: Based on hit/miss, add to LRU
 				// cache list.  This logs a message if 
 				// an old cached object is deleted 				
-				String removedURL=cacheList.addNewObject(url, hit);
-				if (removedURL.trim().length()>0)
-				{
-					//webCache.removeCache(removedURL);
-					// physically removed the cached file
-					cacheToFile.remove(removedURL);
-				}
+				boolean urlWasRemoved = checkIfRemoved(url, hit);
 
 				// Step 4: If hit, send data to output
 				//         If miss, pull data and save it
@@ -132,14 +148,14 @@ public class Proxy
 				
 				// wait a second before next read
 				// I just use this as a timer mechanism
-				try
-				{
-					Thread.sleep(sleepSeconds * 1000);
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
+				//try
+				//{
+				//	Thread.sleep(sleepSeconds * 1000);
+				//}
+				//catch (Exception e)
+				//{
+				//	e.printStackTrace();
+				//}
 			}
 		} while (url.trim().length()>0);
 
@@ -169,15 +185,15 @@ public class Proxy
 	
 	public static void main(String args[])
 	{
-		if (args.length!=3)
+		if (args.length == 3)
 		{
 			try
 			{
 				String directory=args[0];
-				String temp=args[1];
-				int maxCacheSize=Integer.parseInt(temp);
-				temp=args[2];
-				int sleepSeconds=Integer.parseInt(temp);
+				String maxCache=args[1];
+				String sleepTime=args[2];
+				int maxCacheSize=Integer.parseInt(maxCache);
+				int sleepSeconds=Integer.parseInt(sleepTime);
 				Proxy proxy=new Proxy(directory, maxCacheSize, sleepSeconds);
 				proxy.run();
 			}

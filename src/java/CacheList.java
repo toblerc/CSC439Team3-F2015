@@ -64,7 +64,7 @@ public class CacheList
 	 */
 	public String addNewObject(String URL, boolean hit)
 	{
-		String removedURL="";
+		String removedURL= null;
 		
 		if (hit)
 		{
