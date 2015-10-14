@@ -77,11 +77,11 @@ public class Proxy
 		}
 	}
 	
-	private String cacheRead(){
+	protected String cacheRead(){
 		return cacheRequest.read();
 	}
 	
-	private boolean isAlreadyCached(String url){
+	protected boolean isAlreadyCached(String url){
 		boolean hit = cacheToFile.isCached(url);
 		if (hit)
 		{
@@ -94,7 +94,7 @@ public class Proxy
 		return hit;
 	}
 	
-	private boolean checkIfRemoved(String url, boolean hit){
+	protected boolean checkIfRemoved(String url, boolean hit){
 		String removedURL=cacheList.addNewObject(url, hit);
 		if (removedURL.trim().length()>0)
 		{

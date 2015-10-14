@@ -73,9 +73,9 @@ public class CacheList
 		
 		
 		// If size is MAXSIZE, remove last link
-		if (linkedList.size()==maxSize)
+		if (linkedList.size() == maxSize)
 		{
-			removedURL=(String)linkedList.getLast();
+			removedURL = (String)linkedList.getLast();
 			log.logRemoval(removedURL);
 			linkedList.removeLast();
 		}
@@ -83,7 +83,7 @@ public class CacheList
 		// Newest is always the first.
 		linkedList.addFirst(URL);
 		
-		//System.out.println("Added "+URL);
+		System.out.println("Added "+URL);
 		
 		//traverseTest();
 		
