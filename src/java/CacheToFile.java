@@ -1,3 +1,4 @@
+package java;
 
 
 import java.io.BufferedReader;
@@ -50,7 +51,7 @@ public class CacheToFile
 	 * @param sb
 	 */
 	public void write(String url, StringBuffer sb)
-	{
+	{ 
 		try
 		{
 			String cachedFile=generateFilename(url);

@@ -1,4 +1,8 @@
+package test;
 import static org.junit.Assert.*;
+
+import java.CacheList;
+
 import org.junit.Test;
 
 //import org.junit.After;
@@ -7,7 +11,7 @@ import org.junit.Before;
 //import org.junit.BeforeClass;
 
 
-public class CacheListTest {
+public class TestCacheList {
 
 	String directory;
 	int maxSize;		
