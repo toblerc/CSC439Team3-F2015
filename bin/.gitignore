@@ -1,11 +1,3 @@
-/CacheLogTest.class
-/CacheRequestTest.class
-/CacheToFileTest.class
-/LRUProxyAllTests.class
-/TestCacheList.class
-/TestCacheToFile.class
-/TestCacheRequest.class
-/TestCacheLog.class
-/TestCacheSuite.class
-/test
 /java
+/test
+/main

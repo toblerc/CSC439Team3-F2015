@@ -1,7 +1,6 @@
 package test;
 import static org.junit.Assert.*;
-
-import java.CacheList;
+import main.CacheList;
 
 import org.junit.Test;
 

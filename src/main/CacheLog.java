@@ -1,4 +1,4 @@
-package java;
+package main;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
