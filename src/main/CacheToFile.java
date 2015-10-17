@@ -111,13 +111,13 @@ public class CacheToFile
 	{
 		String cachedFile=generateFilename(cachedURL);
 		String filename=directory+cachedFile;
-		File file = new File(filename);
+		File file = new File(filename);/*
 		try {
 			file.createNewFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return file.exists();
 	}
 	

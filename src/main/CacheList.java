@@ -65,7 +65,7 @@ public class CacheList
 	 */
 	public String addNewObject(String URL, boolean hit)
 	{
-		String removedURL= null;
+		String removedURL= "";
 		
 		if (hit)
 		{
@@ -84,7 +84,11 @@ public class CacheList
 		// Newest is always the first.
 		linkedList.addFirst(URL);
 		
-		System.out.println("Added "+URL);
+		if (hit)
+			System.out.println("Returning cached "+URL);
+		else
+			System.out.println("Added "+URL);
+		
 		
 		//traverseTest();
 		
