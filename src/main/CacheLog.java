@@ -20,13 +20,11 @@ public class CacheLog
 	private BufferedWriter out;
 	private String filename;
 	private SimpleDateFormat format;
-	
 	private String returnString;
 	
 	public CacheLog(String directory)
 	{
 		filename=directory+"/output.log";
-		returnString="\n";
 		format =
             new SimpleDateFormat("EEE MMMM dd HH:mm:ss yyyy");
 
@@ -50,7 +48,8 @@ public class CacheLog
 		String dateString=format.format(cal.getTime());
 		try
 		{
-			out.write(dateString+" "+URL+" the cached page is evicted"+returnString);
+			out.write(dateString+" "+URL+" the cached page is evicted");
+			out.newLine();
 			out.close();
 		}
 		catch (Exception e)
@@ -66,7 +65,8 @@ public class CacheLog
 		String dateString=format.format(cal.getTime());
 		try
 		{
-			out.write(dateString+" "+URL+" cache hit"+returnString);
+			out.write(dateString+" "+URL+" cache hit");
+			out.newLine();
 			out.close();
 		}
 		catch (Exception e)
@@ -82,7 +82,8 @@ public class CacheLog
 		String dateString=format.format(cal.getTime());
 		try
 		{
-			out.write(dateString+" "+URL+" cache miss"+returnString);
+			out.write(dateString+" "+URL+" cache miss");
+			out.newLine();
 			out.close();
 		}
 		catch (Exception e)

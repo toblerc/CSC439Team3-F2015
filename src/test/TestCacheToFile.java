@@ -1,17 +1,29 @@
+/**
+ *
+ * @author Brycen Davis
+ * @date 10-17-2015
+ * LRU Proxy Phase 1
+ * CSC 439 Team 3 Fall 2015
+ * TestCacheToFile.java
+ *
+ */
+
 package test;
 import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import main.CacheToFile;
 
 public class TestCacheToFile {
 
+	String directory;
+	CacheToFile ctftest;
+	
 	// Adds in the testDirectory and copies the input file
 	// into the directory for use later
 	@BeforeClass
@@ -35,7 +47,7 @@ public class TestCacheToFile {
 	@AfterClass
 	public static void tearDownOnce(){
 		String directory = "C:\\testDirectory\\";
-		System.out.println(deleteDirectory(new File(directory)));
+		deleteDirectory(new File(directory));
 	}
 			
 	// Recursively delete the testDirectory and all files inside,
@@ -56,11 +68,29 @@ public class TestCacheToFile {
 		
 	@Before
 	public void setUp() throws Exception {
+		this.directory = "C:\\testDirectory\\";
+		ctftest = new CacheToFile(directory);
 	}	
 
+	//Test remove method
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void removeTest() {
+		String testURL = "www.google.com";
+		File testFile = new File(this.directory + testURL);
+		try {
+			testFile.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ctftest.remove(testURL);
+		assertEquals(false, testFile.exists());
 	}
-
+	
+	//Test isCached method
+	@Test
+	public void isCachedTest(){
+		String testURL = "www.bing.com";
+		assertEquals(true, ctftest.isCached(testURL));
+	}
 }

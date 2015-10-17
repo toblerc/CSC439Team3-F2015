@@ -1,12 +1,19 @@
+/**
+ *
+ * @author Brycen Davis
+ * @date 10-17-2015
+ * LRU Proxy Phase 1
+ * CSC 439 Team 3 Fall 2015
+ * TestCacheRequest.java
+ *
+ */
+
 package test;
 import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
 import main.CacheRequest;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -40,7 +47,7 @@ public class TestCacheRequest {
 	@AfterClass
 	public static void tearDownOnce(){
 		String directory = "C:\\testDirectory\\";
-		System.out.println(deleteDirectory(new File(directory)));
+		deleteDirectory(new File(directory));
 	}
 		
 	// Recursively delete the testDirectory and all files inside,

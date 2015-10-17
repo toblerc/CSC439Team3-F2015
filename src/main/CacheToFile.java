@@ -1,11 +1,11 @@
 package main;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 /**
@@ -112,6 +112,12 @@ public class CacheToFile
 		String cachedFile=generateFilename(cachedURL);
 		String filename=directory+cachedFile;
 		File file = new File(filename);
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return file.exists();
 	}
 	
