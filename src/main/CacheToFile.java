@@ -89,11 +89,12 @@ public class CacheToFile
 			String line=in.readLine();
 			while(line!=null)
 			{
-				ostream.write(line);
+				ostream.write(line+"\n");
 				line=in.readLine();
 			}
 			
-			ostream.close();
+			ostream.flush();
+			
 			in.close();
 		}
 		catch (Exception e)
