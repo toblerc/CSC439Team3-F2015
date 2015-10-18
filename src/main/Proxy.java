@@ -96,7 +96,7 @@ public class Proxy
 	
 	protected boolean checkIfRemoved(String url, boolean hit){
 		String removedURL=cacheList.addNewObject(url, hit);
-		if (removedURL.trim().length()>0)
+		if (removedURL != null)
 		{
 			//webCache.removeCache(removedURL);
 			// physically removed the cached file

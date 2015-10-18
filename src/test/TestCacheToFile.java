@@ -91,6 +91,6 @@ public class TestCacheToFile {
 	@Test
 	public void isCachedTest(){
 		String testURL = "www.bing.com";
-		assertEquals(true, ctftest.isCached(testURL));
+		assertEquals(false, ctftest.isCached(testURL));
 	}
 }
